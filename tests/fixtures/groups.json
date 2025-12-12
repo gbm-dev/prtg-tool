@@ -1,0 +1,66 @@
+{
+  "prtg-version": "24.3.100.1361",
+  "treesize": 5,
+  "groups": [
+    {
+      "objid": "0",
+      "objid_raw": 0,
+      "probe": "",
+      "probe_raw": "",
+      "group": "Root",
+      "group_raw": "Root",
+      "name": "Root",
+      "name_raw": "Root",
+      "parentid": "-1000",
+      "parentid_raw": -1000
+    },
+    {
+      "objid": "2074",
+      "objid_raw": 2074,
+      "probe": "AZU-SUS-PRTGP01",
+      "probe_raw": "AZU-SUS-PRTGP01",
+      "group": "AmTrack",
+      "group_raw": "AmTrack",
+      "name": "AmTrack",
+      "name_raw": "AmTrack",
+      "parentid": "2060",
+      "parentid_raw": 2060
+    },
+    {
+      "objid": "2136",
+      "objid_raw": 2136,
+      "probe": "AZU-SUS-PRTGP01",
+      "probe_raw": "AZU-SUS-PRTGP01",
+      "group": "IBM Cloud",
+      "group_raw": "IBM Cloud",
+      "name": "IBM Cloud",
+      "name_raw": "IBM Cloud",
+      "parentid": "2074",
+      "parentid_raw": 2074
+    },
+    {
+      "objid": "2451",
+      "objid_raw": 2451,
+      "probe": "AZU-SUS-PRTGP01",
+      "probe_raw": "AZU-SUS-PRTGP01",
+      "group": "Firewalls",
+      "group_raw": "Firewalls",
+      "name": "Firewalls",
+      "name_raw": "Firewalls",
+      "parentid": "2136",
+      "parentid_raw": 2136
+    },
+    {
+      "objid": "2452",
+      "objid_raw": 2452,
+      "probe": "AZU-SUS-PRTGP01",
+      "probe_raw": "AZU-SUS-PRTGP01",
+      "group": "Allen DR",
+      "group_raw": "Allen DR",
+      "name": "Allen DR",
+      "name_raw": "Allen DR",
+      "parentid": "2074",
+      "parentid_raw": 2074
+    }
+  ]
+}

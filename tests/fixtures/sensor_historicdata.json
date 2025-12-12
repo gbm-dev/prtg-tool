@@ -1,0 +1,85 @@
+{
+  "histdata": [
+    {
+      "datetime": "2024-01-15 00:00:00",
+      "datetime_raw": 45309.0,
+      "value": "5.234",
+      "value_raw": 5.234,
+      "coverage": "100%",
+      "coverage_raw": 100
+    },
+    {
+      "datetime": "2024-01-15 00:01:00",
+      "datetime_raw": 45309.000694444445,
+      "value": "5.123",
+      "value_raw": 5.123,
+      "coverage": "100%",
+      "coverage_raw": 100
+    },
+    {
+      "datetime": "2024-01-15 00:02:00",
+      "datetime_raw": 45309.00138888889,
+      "value": "5.456",
+      "value_raw": 5.456,
+      "coverage": "100%",
+      "coverage_raw": 100
+    },
+    {
+      "datetime": "2024-01-15 00:03:00",
+      "datetime_raw": 45309.002083333336,
+      "value": "5.678",
+      "value_raw": 5.678,
+      "coverage": "100%",
+      "coverage_raw": 100
+    },
+    {
+      "datetime": "2024-01-15 00:04:00",
+      "datetime_raw": 45309.00277777778,
+      "value": "5.345",
+      "value_raw": 5.345,
+      "coverage": "100%",
+      "coverage_raw": 100
+    },
+    {
+      "datetime": "2024-01-15 00:05:00",
+      "datetime_raw": 45309.003472222225,
+      "value": "5.234",
+      "value_raw": 5.234,
+      "coverage": "100%",
+      "coverage_raw": 100
+    },
+    {
+      "datetime": "2024-01-15 00:06:00",
+      "datetime_raw": 45309.00416666667,
+      "value": "5.567",
+      "value_raw": 5.567,
+      "coverage": "100%",
+      "coverage_raw": 100
+    },
+    {
+      "datetime": "2024-01-15 00:07:00",
+      "datetime_raw": 45309.004861111114,
+      "value": "5.123",
+      "value_raw": 5.123,
+      "coverage": "100%",
+      "coverage_raw": 100
+    },
+    {
+      "datetime": "2024-01-15 00:08:00",
+      "datetime_raw": 45309.00555555556,
+      "value": "5.890",
+      "value_raw": 5.89,
+      "coverage": "100%",
+      "coverage_raw": 100
+    },
+    {
+      "datetime": "2024-01-15 00:09:00",
+      "datetime_raw": 45309.00625,
+      "value": "5.456",
+      "value_raw": 5.456,
+      "coverage": "100%",
+      "coverage_raw": 100
+    }
+  ],
+  "sensorid": "2460"
+}

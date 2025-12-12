@@ -1,0 +1,63 @@
+{
+  "prtg-version": "21.4.73.1234",
+  "treesize": 250,
+  "devices": [
+    {
+      "objid": "2001",
+      "name": "web-server-01",
+      "device": "web-server-01",
+      "host": "192.168.1.10",
+      "probe": "Local Probe",
+      "group": "Web Servers",
+      "parentid": "1000",
+      "status": "Up",
+      "status_raw": "3",
+      "message": "OK",
+      "tags": "production web linux",
+      "priority": "3",
+      "upsens": "10",
+      "downsens": "0",
+      "warnsens": "0",
+      "pausedsens": "0",
+      "unusualsens": "0"
+    },
+    {
+      "objid": "2002",
+      "name": "db-server-01",
+      "device": "db-server-01",
+      "host": "192.168.1.20",
+      "probe": "Local Probe",
+      "group": "Database Servers",
+      "parentid": "1001",
+      "status": "Up",
+      "status_raw": "3",
+      "message": "OK",
+      "tags": "production database linux",
+      "priority": "1",
+      "upsens": "8",
+      "downsens": "0",
+      "warnsens": "0",
+      "pausedsens": "2",
+      "unusualsens": "0"
+    },
+    {
+      "objid": "2003",
+      "name": "app-server-01",
+      "device": "app-server-01",
+      "host": "192.168.1.30",
+      "probe": "Remote Probe",
+      "group": "Application Servers",
+      "parentid": "1002",
+      "status": "Down",
+      "status_raw": "5",
+      "message": "Host unreachable",
+      "tags": "production app linux",
+      "priority": "2",
+      "upsens": "5",
+      "downsens": "3",
+      "warnsens": "1",
+      "pausedsens": "0",
+      "unusualsens": "0"
+    }
+  ]
+}
