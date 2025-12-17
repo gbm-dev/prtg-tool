@@ -8,7 +8,7 @@ from prtg.config import ConfigManager, PRTGConfig
 from prtg.client import PRTGClient, PRTGClientError
 from prtg.formatters.base import FormatterFactory
 import prtg.formatters.json  # Import to register formatter
-from prtg.commands import device, group, sensor
+from prtg.commands import device, group, sensor, config
 
 
 # Click context object to pass config and client
@@ -150,6 +150,7 @@ def cli(
 
 
 # Add command groups
+cli.add_command(config.config)
 cli.add_command(device.device)
 cli.add_command(group.group)
 cli.add_command(sensor.sensor)
