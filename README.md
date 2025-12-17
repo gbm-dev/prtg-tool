@@ -13,18 +13,37 @@ A command-line interface for PRTG Network Monitor API, designed following Unix p
 
 ## Installation
 
+### Prerequisites
+
+This project uses [uv](https://docs.astral.sh/uv/) for dependency management. Install it first:
+
+```bash
+# macOS/Linux
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Windows
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+
+# Or with pip
+pip install uv
+```
+
 ### From Source
 
 ```bash
 git clone https://github.com/yourusername/prtg-tool.git
 cd prtg-tool
-pip install -e .
+uv sync --all-extras  # Includes dev dependencies for testing
 ```
 
 ### Development Installation
 
 ```bash
-pip install -e ".[dev]"
+# Install with dev dependencies
+uv sync --all-extras
+
+# Run without installation
+uv run prtg --help
 ```
 
 ## Quick Start
@@ -33,15 +52,15 @@ pip install -e ".[dev]"
 
 ```bash
 # List all devices
-prtg device list \
+uv run prtg device list \
   --url https://prtg.example.com \
   --api-token YOUR_API_TOKEN_HERE
 
 # Get a specific device
-prtg device get 2001 --url https://prtg.example.com --api-token YOUR_API_TOKEN_HERE
+uv run prtg device get 2001 --url https://prtg.example.com --api-token YOUR_API_TOKEN_HERE
 
 # JSON is pretty-printed by default (use --no-pretty for compact output)
-prtg device list
+uv run prtg device list
 ```
 
 ### Using Configuration File
@@ -66,10 +85,10 @@ Then use without credentials:
 
 ```bash
 # Uses default profile
-prtg device list
+uv run prtg device list
 
 # Uses production profile
-prtg device list --profile production
+uv run prtg device list --profile production
 ```
 
 ### Using Environment Variables
@@ -78,7 +97,7 @@ prtg device list --profile production
 export PRTG_URL=https://prtg.example.com
 export PRTG_API_TOKEN=YOUR_API_TOKEN_HERE
 
-prtg device list  # Uses environment variables
+uv run prtg device list  # Uses environment variables
 ```
 
 ### Using .env File
@@ -108,41 +127,41 @@ See `.env.example` for a complete template.
 
 ```bash
 # List all sensors
-prtg sensor list
+uv run prtg sensor list
 
 # Filter by status
-prtg sensor list --status down
+uv run prtg sensor list --status down
 
 # Filter by tag
-prtg sensor list --tag production
+uv run prtg sensor list --tag production
 
 # Filter by name pattern (regex)
-prtg sensor list --filter "ping.*"
+uv run prtg sensor list --filter "ping.*"
 
 # Filter by parent device
-prtg sensor list --device 2001
+uv run prtg sensor list --device 2001
 
 # Combine filters
-prtg sensor list --status down --tag production --filter "ping.*"
+uv run prtg sensor list --status down --tag production --filter "ping.*"
 
 # Pagination
-prtg sensor list --limit 10 --offset 0
+uv run prtg sensor list --limit 10 --offset 0
 ```
 
 #### Get Sensor Details
 
 ```bash
 # Single sensor
-prtg sensor get 2460
+uv run prtg sensor get 2460
 
 # Multiple sensors
-prtg sensor get 2460 2461 2462
+uv run prtg sensor get 2460 2461 2462
 
 # Read from stdin
-echo "2460" | prtg sensor get --stdin
+echo "2460" | uv run prtg sensor get --stdin
 
 # Pipe from list
-prtg sensor list --status down | jq -r '.[].objid' | prtg sensor get --stdin
+uv run prtg sensor list --status down | jq -r '.[].objid' | uv run prtg sensor get --stdin
 ```
 
 #### Get Sensor Historic Data
@@ -151,28 +170,28 @@ prtg sensor list --status down | jq -r '.[].objid' | prtg sensor get --stdin
 
 ```bash
 # Last 50 rows of last 7 days (default behavior)
-prtg sensor data 2460
+uv run prtg sensor data 2460
 
 # Show last 20 rows
-prtg sensor data 2460 --head 20
+uv run prtg sensor data 2460 --head 20
 
 # Show all data (no limit)
-prtg sensor data 2460 --head 0
+uv run prtg sensor data 2460 --head 0
 
 # Last 24 hours in JSON format (no row limit for JSON)
-prtg sensor data 2460 --hours 24 --format json
+uv run prtg sensor data 2460 --hours 24 --format json
 
 # Last 30 days with daily averages, limited to 50 rows
-prtg sensor data 2460 --days 30 --interval 1d
+uv run prtg sensor data 2460 --days 30 --interval 1d
 
 # Specific date range with hourly averages
-prtg sensor data 2460 --start 2024-01-01-00-00-00 --end 2024-01-31-23-59-59 --interval 1h
+uv run prtg sensor data 2460 --start 2024-01-01-00-00-00 --end 2024-01-31-23-59-59 --interval 1h
 
 # Save full 7 days to file (no row limit when saving to file)
-prtg sensor data 2460 --days 7 --output sensor_2460.csv
+uv run prtg sensor data 2460 --days 7 --output sensor_2460.csv
 
 # Get raw data for last 7 days, all rows
-prtg sensor data 2460 --days 7 --interval raw --head 0
+uv run prtg sensor data 2460 --days 7 --interval raw --head 0
 ```
 
 ### Device Management
@@ -181,38 +200,38 @@ prtg sensor data 2460 --days 7 --interval raw --head 0
 
 ```bash
 # List all devices
-prtg device list
+uv run prtg device list
 
 # Filter by status
-prtg device list --status down
+uv run prtg device list --status down
 
 # Filter by tag
-prtg device list --tag production
+uv run prtg device list --tag production
 
 # Filter by name pattern (regex)
-prtg device list --filter "web-.*-prod"
+uv run prtg device list --filter "web-.*-prod"
 
 # Combine filters
-prtg device list --status down --tag production --filter "web-.*"
+uv run prtg device list --status down --tag production --filter "web-.*"
 
 # Pagination
-prtg device list --limit 10 --offset 0
+uv run prtg device list --limit 10 --offset 0
 ```
 
 #### Get Device Details
 
 ```bash
 # Single device
-prtg device get 2001
+uv run prtg device get 2001
 
 # Multiple devices
-prtg device get 2001 2002 2003
+uv run prtg device get 2001 2002 2003
 
 # Read from stdin
-echo "2001" | prtg device get --stdin
+echo "2001" | uv run prtg device get --stdin
 
 # Pipe from list
-prtg device list --status down | jq -r '.[].objid' | prtg device get --stdin
+uv run prtg device list --status down | jq -r '.[].objid' | uv run prtg device get --stdin
 ```
 
 ## Common Use Cases
@@ -220,19 +239,19 @@ prtg device list --status down | jq -r '.[].objid' | prtg device get --stdin
 ### Find all down sensors
 
 ```bash
-prtg sensor list --status down
+uv run prtg sensor list --status down
 ```
 
 ### Get sensor details for a specific device
 
 ```bash
-prtg sensor list --device 2001
+uv run prtg sensor list --device 2001
 ```
 
 ### Find sensors with specific names
 
 ```bash
-prtg sensor list | jq -r '.[] | select(.name | contains("Ping")) | "\(.objid): \(.name) - \(.device)"'
+uv run prtg sensor list | jq -r '.[] | select(.name | contains("Ping")) | "\(.objid): \(.name) - \(.device)"'
 ```
 
 ### Monitor critical sensors
@@ -243,7 +262,7 @@ prtg sensor list | jq -r '.[] | select(.name | contains("Ping")) | "\(.objid): \
 CRITICAL_SENSORS="2460 2461 2462"
 
 for sensor_id in $CRITICAL_SENSORS; do
-  status=$(prtg sensor get $sensor_id | jq -r '.status')
+  status=$(uv run prtg sensor get $sensor_id | jq -r '.status')
   if [ "$status" != "Up" ]; then
     echo "ALERT: Sensor $sensor_id is $status"
   fi
@@ -253,46 +272,46 @@ done
 ### Export sensors to CSV
 
 ```bash
-prtg sensor list | jq -r '.[] | [.objid, .name, .device, .status, .lastvalue] | @csv' > sensors.csv
+uv run prtg sensor list | jq -r '.[] | [.objid, .name, .device, .status, .lastvalue] | @csv' > sensors.csv
 ```
 
 ### Get sensor data for analysis
 
 ```bash
 # Export last 30 days of ping data to CSV
-prtg sensor data 2460 --days 30 --interval 1d --output ping_monthly.csv
+uv run prtg sensor data 2460 --days 30 --interval 1d --output ping_monthly.csv
 
 # Get hourly CPU data for the last week in JSON
-prtg sensor data 2480 --days 7 --interval 1h --format json > cpu_weekly.json
+uv run prtg sensor data 2480 --days 7 --interval 1h --format json > cpu_weekly.json
 
 # Compare sensor performance
 for sensor_id in 2460 2461 2462; do
-  prtg sensor data $sensor_id --days 7 --output sensor_${sensor_id}.csv
+  uv run prtg sensor data $sensor_id --days 7 --output sensor_${sensor_id}.csv
 done
 ```
 
 ### Find all down devices
 
 ```bash
-prtg device list --status down
+uv run prtg device list --status down
 ```
 
 ### Get device names and IDs
 
 ```bash
-prtg device list | jq -r '.[] | "\(.objid): \(.name)"'
+uv run prtg device list | jq -r '.[] | "\(.objid): \(.name)"'
 ```
 
 ### Find devices with down sensors
 
 ```bash
-prtg device list | jq -r '.[] | select(.sensor_count_down > 0) | "\(.name): \(.sensor_count_down) sensors down"'
+uv run prtg device list | jq -r '.[] | select(.sensor_count_down > 0) | "\(.name): \(.sensor_count_down) sensors down"'
 ```
 
 ### Export to CSV (using jq)
 
 ```bash
-prtg device list | jq -r '.[] | [.objid, .name, .host, .status] | @csv' > devices.csv
+uv run prtg device list | jq -r '.[] | [.objid, .name, .host, .status] | @csv' > devices.csv
 ```
 
 ### Monitor specific devices
@@ -303,7 +322,7 @@ prtg device list | jq -r '.[] | [.objid, .name, .host, .status] | @csv' > device
 CRITICAL_DEVICES="2001 2002 2003"
 
 for device_id in $CRITICAL_DEVICES; do
-  status=$(prtg device get $device_id | jq -r '.status')
+  status=$(uv run prtg device get $device_id | jq -r '.status')
   if [ "$status" != "Up" ]; then
     echo "ALERT: Device $device_id is $status"
   fi
@@ -365,16 +384,16 @@ When using multiple token options, priority is:
 
 ```bash
 # Run all tests
-pytest
+uv run pytest
 
 # Run with coverage
-pytest --cov=prtg --cov-report=html
+uv run pytest --cov=prtg --cov-report=html
 
 # Run specific test file
-pytest tests/test_client.py
+uv run pytest tests/test_client.py
 
 # Verbose output
-pytest -v
+uv run pytest -v
 ```
 
 ### Project Structure

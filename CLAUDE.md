@@ -4,39 +4,59 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Development Commands
 
+### Installation
+```bash
+# Install all dependencies (including dev dependencies)
+uv sync --all-extras
+
+# Sync after updating pyproject.toml
+uv sync --all-extras
+```
+
 ### Testing
 ```bash
 # Run all tests
-pytest
+uv run pytest
 
 # Run tests with verbose output
-pytest -v
+uv run pytest -v
 
 # Run specific test file
-pytest tests/test_sensor.py
+uv run pytest tests/test_sensor.py
 
 # Run specific test class
-pytest tests/test_sensor.py::TestSensorModel
+uv run pytest tests/test_sensor.py::TestSensorModel
 
 # Run specific test method
-pytest tests/test_sensor.py::TestSensorModel::test_basic_sensor_creation
+uv run pytest tests/test_sensor.py::TestSensorModel::test_basic_sensor_creation
+
+# Run with coverage
+uv run pytest --cov=prtg --cov-report=html
 ```
 
 ### Running the CLI
 ```bash
 # Run from source (development mode)
-python -m prtg --help
-python -m prtg device list
-python -m prtg sensor list
+uv run prtg --help
+uv run prtg device list
+uv run prtg sensor list
 
-# After installation
+# Or activate the virtual environment first
+source .venv/bin/activate  # Linux/macOS
+# .venv\Scripts\activate    # Windows
 prtg --help
 ```
 
-### Installation
+### Adding Dependencies
 ```bash
-# Development installation (editable mode)
-pip install -e ".[dev]"
+# Add a new runtime dependency
+uv add package-name
+
+# Add a new dev dependency
+uv add --dev package-name
+
+# Remove a dependency
+uv remove package-name
 ```
 
 ## Architecture Overview
